@@ -1,7 +1,19 @@
-#[no_mangle]
-#[export_name = "my_add_naming"]
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+mod math {
+    mod math_js {
+        #[link(wasm_import_module = "Math")]
+        extern "C" {
+            pub fn random() -> f64;
+        }
+    }
+
+    pub fn random() -> f64 {
+        unsafe { math_js::random() }
+    }
+}
+
+#[export_name = "add"]
+pub fn add(left: f64, right: f64) -> f64 {
+    left + right + unsafe { math::random() }
 }
 
 #[cfg(test)]
