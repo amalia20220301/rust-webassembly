@@ -25,8 +25,9 @@ pub fn add(left: f64, right: f64) -> f64 {
 
 #[no_mangle]
 extern "C" fn nth_prime(n: usize) -> i32{
-    if n < 0 || n >= PRIMES.len() { return -1; }
-    PRIMES[n]
+    // if n < 0 || n >= PRIMES.len() { return -1; }
+    // PRIMES[n]
+    PRIMES.get(n).copied().unwrap_or(-1)
 }
 
 #[cfg(test)]
