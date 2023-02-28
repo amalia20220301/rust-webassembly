@@ -14,3 +14,5 @@ crate-type = ["cdylib"]
 # llvm-strip can be used to control over which custom sections should be kept around
 [profile.release]
 strip=true
+# only cons is longer build time
+lto=true
