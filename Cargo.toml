@@ -9,3 +9,8 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
+
+# strip to remove custom debug section
+# llvm-strip can be used to control over which custom sections should be kept around
+[profile.release]
+strip=true
