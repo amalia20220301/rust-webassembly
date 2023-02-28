@@ -11,6 +11,11 @@ mod math {
     }
 }
 
+const _: () = {
+    #[link_section = "surmsection"]
+    static SECTION_CONTENT: [u8; 11] = *b"hello world";
+};
+
 #[export_name = "add"]
 pub fn add(left: f64, right: f64) -> f64 {
     left + right + unsafe { math::random() }
