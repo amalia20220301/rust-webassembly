@@ -11,6 +11,8 @@ mod math {
     }
 }
 
+static PRIMES: &[i32] = &[2, 3, 5, 7, 11, 13, 17, 19, 23];
+
 const _: () = {
     #[link_section = "surmsection"]
     static SECTION_CONTENT: [u8; 11] = *b"hello world";
@@ -19,6 +21,11 @@ const _: () = {
 #[export_name = "add"]
 pub fn add(left: f64, right: f64) -> f64 {
     left + right + unsafe { math::random() }
+}
+
+#[no_mangle]
+extern "C" fn nth_prime(n: usize) -> i32{
+    PRIMES[n]
 }
 
 #[cfg(test)]
